@@ -154,7 +154,7 @@ void* worker(void* arg) {
 		task.arg = pool->taskQ[pool->queueFront].arg;
 		pool->queueFront = (pool->queueFront + 1) % pool->queueCapacity;
 		pool->queueSize--;
-		pthread_cond_signal(&pool->notEmpty);
+		pthread_cond_signal(&pool->notFull);
 		pthread_mutex_unlock(&pool->mutexPool);
 
 		printf("thread %ld start working...\n", pthread_self());
@@ -245,7 +245,7 @@ void threadPoolAdd(ThreadPool* pool, void(*func)(void*), void* arg) {
 	pool->taskQ[pool->queueRear].arg = arg;
 	pool->queueRear = (pool->queueRear + 1) % pool->queueCapacity;
 	pool->queueSize++;
-	pthread_cond_signal(&pool->notFull);
+	pthread_cond_signal(&pool->notEmpty);
 	pthread_mutex_unlock(&pool->mutexPool);
 }
 
