@@ -219,7 +219,7 @@ void threadExit(ThreadPool* pool) {
 	pthread_t pid = pthread_self();
 	for (int i = 0; i < pool->maxNum; ++i) {
 		if (pool->threadIDs[i] == pid) {
-			pool->threadIDs[i] == 0;
+			pool->threadIDs[i] = 0;
 			printf("ThreadExit called, %ld id thread exit...", pid);
 			break;
 		}
