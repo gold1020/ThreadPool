@@ -1,6 +1,7 @@
 #include "threadPool.h"
 #include <pthread.h>
 #include <string.h>
+#include <unistd.h>
 
 const int NUMADD = 2;
 
@@ -123,7 +124,6 @@ int threadPoolDestroy(ThreadPool* pool) {
 	pool = NULL;
 	return 0;
 }
-
 
 void* worker(void* arg) {
 	ThreadPool* pool = (ThreadPool*)arg;

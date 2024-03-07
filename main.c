@@ -8,7 +8,6 @@ void testFunc(void* arg) {
 	int num = *(int*)arg;
 	printf("thread %ld is working, working num is %d", pthread_self(), num);
 	usleep(1000);
-	
 }
 
 
